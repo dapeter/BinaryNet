@@ -21,13 +21,37 @@ import gzip
 
 import binary_net
 
-from pylearn2.datasets.mnist import MNIST
-from pylearn2.utils import serial
-
 from collections import OrderedDict
 
+# http://deeplearning.net/software/theano/tutorial/using_gpu.html
+def testTheano():
+    from theano import function, config, shared, tensor
+    import numpy
+    import time
+
+    vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
+    iters = 1000
+
+    rng = numpy.random.RandomState(22)
+    x = shared(numpy.asarray(rng.rand(vlen), config.floatX))
+    f = function([], tensor.exp(x))
+    print(f.maker.fgraph.toposort())
+    t0 = time.time()
+    for i in range(iters):
+        r = f()
+    t1 = time.time()
+    print("Looping %d times took %f seconds" % (iters, t1 - t0))
+    print("Result is %s" % (r,))
+    if numpy.any([isinstance(x.op, tensor.Elemwise) and
+                ('Gpu' not in type(x.op).__name__)
+                for x in f.maker.fgraph.toposort()]):
+        print('Used the cpu')
+    else:
+        print('Used the gpu')
+
 if __name__ == "__main__":
-    
+    #testTheano()
+
     # BN parameters
     batch_size = 100
     print("batch_size = "+str(batch_size))
@@ -88,33 +112,47 @@ if __name__ == "__main__":
     shuffle_parts = 1
     print("shuffle_parts = "+str(shuffle_parts))
     
+    # Load the dataset (props to https://github.com/mnielsen/neural-networks-and-deep-learning)
     print('Loading MNIST dataset...')
-    
-    train_set = MNIST(which_set= 'train', start=0, stop = 50000, center = False)
-    valid_set = MNIST(which_set= 'train', start=50000, stop = 60000, center = False)
-    test_set = MNIST(which_set= 'test', center = False)
-    
+    import mnist_loader
+    training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
+
+    train_X = [t_d[0] for t_d in training_data]
+    train_X = np.stack(train_X, axis=0)
+    train_y = [t_d[1] for t_d in training_data]
+    train_y = np.stack(train_y, axis=0)
+
+    validation_X = [v_d[0] for v_d in validation_data]
+    validation_X = np.stack(validation_X, axis=0)
+    validation_y = [v_d[1] for v_d in validation_data]
+    validation_y = np.stack(validation_y, axis=0)
+
+    test_X = [t_d[0] for t_d in test_data]
+    test_X = np.stack(test_X, axis=0)
+    test_y = [t_d[1] for t_d in test_data]
+    test_y = np.stack(test_y, axis=0)
+
     # bc01 format    
     # Inputs in the range [-1,+1]
     # print("Inputs in the range [-1,+1]")
-    train_set.X = 2* train_set.X.reshape(-1, 1, 28, 28) - 1.
-    valid_set.X = 2* valid_set.X.reshape(-1, 1, 28, 28) - 1.
-    test_set.X = 2* test_set.X.reshape(-1, 1, 28, 28) - 1.
+    train_X = 2* train_X.reshape(-1, 1, 28, 28) - 1.
+    validation_X = 2* validation_X.reshape(-1, 1, 28, 28) - 1.
+    test_X = 2* test_X.reshape(-1, 1, 28, 28) - 1.
     
     # flatten targets
-    train_set.y = np.hstack(train_set.y)
-    valid_set.y = np.hstack(valid_set.y)
-    test_set.y = np.hstack(test_set.y)
+    train_y = np.hstack(train_y)
+    validation_y = np.hstack(validation_y)
+    test_y = np.hstack(test_y)
     
     # Onehot the targets
-    train_set.y = np.float32(np.eye(10)[train_set.y])    
-    valid_set.y = np.float32(np.eye(10)[valid_set.y])
-    test_set.y = np.float32(np.eye(10)[test_set.y])
+    train_y = np.float32(np.eye(10)[train_y])    
+    validation_y = np.float32(np.eye(10)[validation_y])
+    test_y = np.float32(np.eye(10)[test_y])
     
     # for hinge loss
-    train_set.y = 2* train_set.y - 1.
-    valid_set.y = 2* valid_set.y - 1.
-    test_set.y = 2* test_set.y - 1.
+    train_y = 2* train_y - 1.
+    validation_y = 2* validation_y - 1.
+    test_y = 2* test_y - 1.
 
     print('Building the MLP...') 
     
@@ -209,8 +247,8 @@ if __name__ == "__main__":
             batch_size,
             LR_start,LR_decay,
             num_epochs,
-            train_set.X,train_set.y,
-            valid_set.X,valid_set.y,
-            test_set.X,test_set.y,
+            train_X,train_y,
+            validation_X,validation_y,
+            test_X,test_y,
             save_path,
             shuffle_parts)
