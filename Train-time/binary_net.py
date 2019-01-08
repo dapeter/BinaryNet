@@ -21,7 +21,8 @@ from theano.tensor.elemwise import Elemwise
 # Our own rounding function, that does not set the gradient to 0 like Theano's
 class Round3(UnaryScalarOp):
     
-    def c_code(self, node, name, (x,), (z,), sub):
+    def c_code(self, node, name, input_names, output_names, sub):
+        x, z = input_names[0], output_names[0]
         return "%(z)s = round(%(x)s);" % locals()
     
     def grad(self, inputs, gout):
@@ -213,8 +214,8 @@ def train(train_fn,val_fn,
         
         # print(len(X))
         
-        chunk_size = len(X)/shuffle_parts
-        shuffled_range = range(chunk_size)
+        chunk_size = len(X)//shuffle_parts
+        shuffled_range = list(range(chunk_size))
         
         X_buffer = np.copy(X[0:chunk_size])
         y_buffer = np.copy(y[0:chunk_size])
@@ -250,7 +251,7 @@ def train(train_fn,val_fn,
     def train_epoch(X,y,LR):
         
         loss = 0
-        batches = len(X)/batch_size
+        batches = len(X)//batch_size
         
         for i in range(batches):
             loss += train_fn(X[i*batch_size:(i+1)*batch_size],y[i*batch_size:(i+1)*batch_size],LR)
@@ -264,7 +265,7 @@ def train(train_fn,val_fn,
         
         err = 0
         loss = 0
-        batches = len(X)/batch_size
+        batches = len(X)//batch_size
         
         for i in range(batches):
             new_loss, new_err = val_fn(X[i*batch_size:(i+1)*batch_size], y[i*batch_size:(i+1)*batch_size])

@@ -1,6 +1,3 @@
-
-from __future__ import print_function
-
 import sys
 import os
 import time
@@ -16,7 +13,7 @@ import theano.tensor as T
 
 import lasagne
 
-import cPickle as pickle
+import pickle
 import gzip
 
 import binary_net
@@ -114,23 +111,13 @@ if __name__ == "__main__":
     
     # Load the dataset (props to https://github.com/mnielsen/neural-networks-and-deep-learning)
     print('Loading MNIST dataset...')
-    import mnist_loader
-    training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
+    mnist_file = gzip.open("./data/mnist.pkl.gz", "rb") 
+    training_data, validation_data, test_data = pickle.load(mnist_file, encoding="latin1")
+    mnist_file.close()
 
-    train_X = [t_d[0] for t_d in training_data]
-    train_X = np.stack(train_X, axis=0)
-    train_y = [t_d[1] for t_d in training_data]
-    train_y = np.stack(train_y, axis=0)
-
-    validation_X = [v_d[0] for v_d in validation_data]
-    validation_X = np.stack(validation_X, axis=0)
-    validation_y = [v_d[1] for v_d in validation_data]
-    validation_y = np.stack(validation_y, axis=0)
-
-    test_X = [t_d[0] for t_d in test_data]
-    test_X = np.stack(test_X, axis=0)
-    test_y = [t_d[1] for t_d in test_data]
-    test_y = np.stack(test_y, axis=0)
+    train_X, train_y = training_data
+    validation_X, validation_y = validation_data
+    test_X, test_y = test_data
 
     # bc01 format    
     # Inputs in the range [-1,+1]
@@ -222,7 +209,7 @@ if __name__ == "__main__":
         
         # other parameters updates
         params = lasagne.layers.get_all_params(mlp, trainable=True, binary=False)
-        updates = OrderedDict(updates.items() + lasagne.updates.adam(loss_or_grads=loss, params=params, learning_rate=LR).items())
+        updates.update(lasagne.updates.adam(loss_or_grads=loss, params=params, learning_rate=LR))
         
     else:
         params = lasagne.layers.get_all_params(mlp, trainable=True)
