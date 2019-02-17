@@ -5,6 +5,8 @@ from collections import OrderedDict
 
 import numpy as np
 
+import csv
+
 # specifying the gpu to use
 # import theano.sandbox.cuda
 # theano.sandbox.cuda.use('gpu1') 
@@ -282,7 +284,12 @@ def train(train_fn,val_fn,
     best_val_err = 100
     best_epoch = 1
     LR = LR_start
-    
+
+    # Used for storing data
+    train_loss_list = []
+    val_loss_list = []
+    val_err_list = []
+
     # We iterate over epochs:
     for epoch in range(num_epochs):
         
@@ -315,7 +322,17 @@ def train(train_fn,val_fn,
         print("  best epoch:                    "+str(best_epoch))
         print("  best validation error rate:    "+str(best_val_err)+"%")
         print("  test loss:                     "+str(test_loss))
-        print("  test error rate:               "+str(test_err)+"%") 
+        print("  test error rate:               "+str(test_err)+"%")
+
+        train_loss_list.append(train_loss)
+        val_loss_list.append(val_loss)
+        val_err_list.append(val_err)
         
         # decay the LR
         LR *= LR_decay
+
+    train_losses = np.array(train_loss_list)
+    val_losses = np.array(val_loss_list)
+    val_errors = np.array(val_err_list)
+
+    return train_losses, val_losses, val_errors, test_err
