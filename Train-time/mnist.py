@@ -65,11 +65,11 @@ def run(binary=False, noise=None, nalpha=0):
     # MLP parameters
     num_units = 2048
     print("num_units = " + str(num_units))
-    n_hidden_layers = 1
+    n_hidden_layers = 2
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
-    num_epochs = 200
+    num_epochs = 500
     print("num_epochs = " + str(num_epochs))
 
     # Dropout parameters
@@ -253,10 +253,6 @@ def run(binary=False, noise=None, nalpha=0):
 
 
 if __name__ == "__main__":
-    for binary in [True, False]:
-        for nalpha in range(0, 51, 10):
-            run(binary=binary, noise='u', nalpha=nalpha)
-
-    for binary in [True, False]:
-        for nalpha in range(50, 101, 10):
+    for nalpha in range(10, 51, 10):
+        for binary in [True, False]:
             run(binary=binary, noise='u', nalpha=nalpha)
