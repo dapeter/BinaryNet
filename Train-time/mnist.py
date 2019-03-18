@@ -52,7 +52,7 @@ def testTheano():
         print('Used the gpu')
 
 
-def run(binary=False, noise=None, nalpha=0):
+def run(binary=False, noise=None, nalpha=0, ndelta=0):
     # BN parameters
     batch_size = 128
     print("batch_size = " + str(batch_size))
@@ -117,7 +117,7 @@ def run(binary=False, noise=None, nalpha=0):
     print('Loading MNIST dataset...')
     mnist = MnistReader("./data/mnist.pkl.gz")
 
-    train_X, train_y = mnist.get_train_data(n_samples=5000, noise=noise, alpha=nalpha)
+    train_X, train_y = mnist.get_train_data(n_samples=5000, noise=noise, alpha=nalpha, delta=ndelta)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
 
@@ -260,16 +260,16 @@ def run(binary=False, noise=None, nalpha=0):
     # Init csv file writer
     csvfile = open('./results/comparison.csv', 'a')
     csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    csv_writer.writerow([binary, noise, nalpha, 0, test_err])
+    csv_writer.writerow([binary, noise, nalpha, ndelta, test_err])
 
     test_errors = np.zeros(train_losses.shape)
     test_errors[0] = test_err
     data = np.column_stack((train_losses, val_losses, val_errors, test_errors))
     header = "Train Loss, Validation Loss, Validation Error, Test Error"
-    np.savetxt('./results/bin_{}_noise_{}_nalpha_{}.dat'.format(binary, noise, nalpha), data, header=header)
+    np.savetxt('./results/bin_{}_noise_{}_nalpha_{}_ndelta_{}.dat'.format(binary, noise, nalpha, ndelta), data, header=header)
 
 
 if __name__ == "__main__":
-    #for nalpha in range(10, 51, 10):
-    #    for binary in [True, False]:
-    run(binary=False, noise=None, nalpha=0)
+    for delta in np.arange(0, 1.1, 0.2):
+        for binary in [False, True]:
+            run(binary=binary, noise='s', nalpha=20, ndelta=delta)
