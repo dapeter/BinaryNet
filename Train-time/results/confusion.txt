@@ -1,0 +1,9 @@
+Epoch 200 of 200 took 0.9118573665618896s
+  LR:                            0.00010232929922807511
+  training loss:                 0.010328962357464031
+  validation loss:               0.01352781960710194
+  validation error rate:         1.3721955128205128%
+  best epoch:                    187
+  best validation error rate:    1.2920673076923077%
+  test loss:                     0.011600960137379355
+  test error rate:               1.342147435897436%
