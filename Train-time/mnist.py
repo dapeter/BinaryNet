@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import matplotlib.pyplot as plt
 
 import numpy as np
 np.random.seed(1234)  # for reproducibility
@@ -65,11 +66,11 @@ def run(binary=False, noise=None, nalpha=0):
     # MLP parameters
     num_units = 2048
     print("num_units = " + str(num_units))
-    n_hidden_layers = 2
+    n_hidden_layers = 1
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
-    num_epochs = 500
+    num_epochs = 200
     print("num_epochs = " + str(num_epochs))
 
     # Dropout parameters
@@ -119,6 +120,22 @@ def run(binary=False, noise=None, nalpha=0):
     train_X, train_y = mnist.get_train_data(n_samples=5000, noise=noise, alpha=nalpha)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
+
+    # # Just for testing
+    # train_samples = {i: None for i in range(10)}
+    # train_labels = {i: None for i in range(10)}
+    # print(train_X.shape)
+    # print(train_y.shape)
+    # print(real_train_y.shape)
+    #
+    # for i in range(10):
+    #     train_i = np.where(real_train_y == i)[0]
+    #     train_samples[i] = train_X[train_i, :]
+    #     train_labels[i] = train_y[train_i]
+    #
+    #     plt.hist(train_labels[i])
+    #     plt.show()
+    # exit(0)
 
     # bc01 format
     # Inputs in the range [-1,+1]
@@ -253,6 +270,6 @@ def run(binary=False, noise=None, nalpha=0):
 
 
 if __name__ == "__main__":
-    for nalpha in range(10, 51, 10):
-        for binary in [True, False]:
-            run(binary=binary, noise='u', nalpha=nalpha)
+    #for nalpha in range(10, 51, 10):
+    #    for binary in [True, False]:
+    run(binary=False, noise=None, nalpha=0)

@@ -335,4 +335,20 @@ def train(train_fn,val_fn,
     val_losses = np.array(val_loss_list)
     val_errors = np.array(val_err_list)
 
+    # # After training, get the predicted outputs of the MLP to assemble the confusion matrix
+    # test_output = lasagne.layers.get_output(model, inputs=X_test, deterministic=True)
+    # y_hat_test = test_output.eval()
+    #
+    # # Remove one hot encoding
+    # y_test = np.argmax(y_test, axis=1)
+    # y_hat_test = np.argmax(y_hat_test, axis=1)
+    #
+    # # Assemble confusion matrix
+    # confusion_matrix = np.zeros((10, 10), dtype='int32')
+    # for actual, predicted in zip(y_test, y_hat_test):
+    #     confusion_matrix[actual, predicted] = confusion_matrix[actual, predicted] + 1
+    #
+    # np.savetxt('./results/confusion.dat', confusion_matrix)
+    # print(confusion_matrix)
+
     return train_losses, val_losses, val_errors, test_err
