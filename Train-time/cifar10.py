@@ -16,16 +16,15 @@ import theano.tensor as T
 
 import lasagne
 
-import cPickle as pickle
 import gzip
 
 import binary_net
 
-from pylearn2.datasets.zca_dataset import ZCA_Dataset   
-from pylearn2.datasets.cifar10 import CIFAR10 
-from pylearn2.utils import serial
+from cifar_reader import CifarReader
 
 from collections import OrderedDict
+
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     
@@ -45,7 +44,7 @@ if __name__ == "__main__":
     # print("activation = binary_net.binary_sigmoid_unit")
     
     # BinaryConnect    
-    binary = True
+    binary = False
     print("binary = "+str(binary))
     stochastic = False
     print("stochastic = "+str(stochastic))
@@ -58,7 +57,7 @@ if __name__ == "__main__":
     print("W_LR_scale = "+str(W_LR_scale))
     
     # Training parameters
-    num_epochs = 500
+    num_epochs = 100
     print("num_epochs = "+str(num_epochs))
     
     # Decaying LR 
@@ -76,32 +75,33 @@ if __name__ == "__main__":
     print("shuffle_parts = "+str(shuffle_parts))
     
     print('Loading CIFAR-10 dataset...')
-    
-    train_set = CIFAR10(which_set="train",start=0,stop = train_set_size)
-    valid_set = CIFAR10(which_set="train",start=train_set_size,stop = 50000)
-    test_set = CIFAR10(which_set="test")
+    cifar = CifarReader("./data/cifar-10-batches-py/")
+
+    train_X, train_y = cifar.get_train_data(n_samples=train_set_size)
+    valid_X, valid_y = cifar.get_validation_data()
+    test_X, test_y = cifar.get_test_data()
         
     # bc01 format
     # Inputs in the range [-1,+1]
     # print("Inputs in the range [-1,+1]")
-    train_set.X = np.reshape(np.subtract(np.multiply(2./255.,train_set.X),1.),(-1,3,32,32))
-    valid_set.X = np.reshape(np.subtract(np.multiply(2./255.,valid_set.X),1.),(-1,3,32,32))
-    test_set.X = np.reshape(np.subtract(np.multiply(2./255.,test_set.X),1.),(-1,3,32,32))
-    
+    train_X = np.reshape(np.subtract(np.multiply(2./255.,train_X),1.),(-1,3,32,32))
+    valid_X = np.reshape(np.subtract(np.multiply(2./255.,valid_X),1.),(-1,3,32,32))
+    test_X = np.reshape(np.subtract(np.multiply(2./255.,test_X),1.),(-1,3,32,32))
+
     # flatten targets
-    train_set.y = np.hstack(train_set.y)
-    valid_set.y = np.hstack(valid_set.y)
-    test_set.y = np.hstack(test_set.y)
-    
+    train_y = np.hstack(train_y)
+    valid_y = np.hstack(valid_y)
+    test_y = np.hstack(test_y)
+
     # Onehot the targets
-    train_set.y = np.float32(np.eye(10)[train_set.y])    
-    valid_set.y = np.float32(np.eye(10)[valid_set.y])
-    test_set.y = np.float32(np.eye(10)[test_set.y])
-    
+    train_y = np.float32(np.eye(10)[train_y])
+    valid_y = np.float32(np.eye(10)[valid_y])
+    test_y = np.float32(np.eye(10)[test_y])
+
     # for hinge loss
-    train_set.y = 2* train_set.y - 1.
-    valid_set.y = 2* valid_set.y - 1.
-    test_set.y = 2* test_set.y - 1.
+    train_y = 2* train_y - 1.
+    valid_y = 2* valid_y - 1.
+    test_y = 2* test_y - 1.
 
     print('Building the CNN...') 
     
@@ -336,7 +336,7 @@ if __name__ == "__main__":
             batch_size,
             LR_start,LR_decay,
             num_epochs,
-            train_set.X,train_set.y,
-            valid_set.X,valid_set.y,
-            test_set.X,test_set.y,
+            train_X,train_y,
+            valid_X,valid_y,
+            test_X,test_y,
             shuffle_parts=shuffle_parts)
