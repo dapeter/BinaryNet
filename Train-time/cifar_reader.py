@@ -74,6 +74,21 @@ class CifarReader(object):
         else:
             n_samples = min(n_samples, self._num_train)
 
+        if noise is None:
+            return self._train_X[0:n_samples], self._train_y[0:n_samples]
+        elif noise == 'u':
+            clean_X = self._train_X[0:n_samples]
+            clean_y = self._train_y[0:n_samples]
+
+            rand_idx = np.random.randint(self._num_train, size=alpha*n_samples)
+            noisy_X = self._train_X[rand_idx]
+            noisy_y = np.random.randint(10, size=alpha*n_samples)
+
+            train_X = np.concatenate((clean_X, noisy_X))
+            train_y = np.concatenate((clean_y, noisy_y))
+
+            return train_X, train_y
+
         return self._train_X[0:n_samples], self._train_y[0:n_samples]
 
     def get_validation_data(self, n_samples=None):
