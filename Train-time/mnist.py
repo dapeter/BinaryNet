@@ -64,9 +64,9 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     print("epsilon = " + str(epsilon))
 
     # MLP parameters
-    num_units = 2048
+    num_units = 256
     print("num_units = " + str(num_units))
-    n_hidden_layers = 1
+    n_hidden_layers = 2
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
@@ -80,8 +80,12 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     print("dropout_hidden = " + str(dropout_hidden))
 
     # BinaryOut
-    activation = binary_net.binary_tanh_unit
-    print("activation = binary_net.binary_tanh_unit")
+    if binary:
+        activation = binary_net.binary_tanh_unit
+        print("activation = binary_net.binary_tanh_unit")
+    else:
+        activation = lasagne.nonlinearities.rectify
+        print("activation = lasagne.nonlinearities.rectify")
     # activation = binary_net.binary_sigmoid_unit
     # print("activation = binary_net.binary_sigmoid_unit")
 
@@ -99,9 +103,9 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     print("W_LR_scale = " + str(W_LR_scale))
 
     # Decaying LR
-    LR_start = .01
+    LR_start = 0.001
     print("LR_start = " + str(LR_start))
-    LR_fin = .0001
+    LR_fin = 0.0001
     print("LR_fin = " + str(LR_fin))
     LR_decay = (LR_fin / LR_start) ** (1. / num_epochs)
     print("LR_decay = " + str(LR_decay))
@@ -110,32 +114,22 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     save_path = "mnist_parameters.npz"
     print("save_path = " + str(save_path))
 
+    train_set_size = 10000
+    print("train_set_size = "+str(train_set_size))
     shuffle_parts = 1
     print("shuffle_parts = " + str(shuffle_parts))
+
+    print("noise = " + str(noise))
+    print("nalpha = " + str(nalpha))
+    print("ndelta = " + str(ndelta))
 
     # Load the dataset (props to https://github.com/mnielsen/neural-networks-and-deep-learning)
     print('Loading MNIST dataset...')
     mnist = MnistReader("./data/mnist.pkl.gz")
 
-    train_X, train_y = mnist.get_train_data(n_samples=5000, noise=noise, alpha=nalpha, delta=ndelta)
+    train_X, train_y = mnist.get_train_data(n_samples=train_set_size, noise=noise, alpha=nalpha, delta=ndelta)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
-
-    # # Just for testing
-    # train_samples = {i: None for i in range(10)}
-    # train_labels = {i: None for i in range(10)}
-    # print(train_X.shape)
-    # print(train_y.shape)
-    # print(real_train_y.shape)
-    #
-    # for i in range(10):
-    #     train_i = np.where(real_train_y == i)[0]
-    #     train_samples[i] = train_X[train_i, :]
-    #     train_labels[i] = train_y[train_i]
-    #
-    #     plt.hist(train_labels[i])
-    #     plt.show()
-    # exit(0)
 
     # bc01 format
     # Inputs in the range [-1,+1]
@@ -270,6 +264,6 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
 
 
 if __name__ == "__main__":
-    for delta in np.arange(0, 1.1, 0.2):
+    for alpha in np.arange(0, 51, 10):
         for binary in [False, True]:
-            run(binary=binary, noise='s', nalpha=20, ndelta=delta)
+            run(binary=binary, noise='u', nalpha=alpha, ndelta=0)
