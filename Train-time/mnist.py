@@ -54,7 +54,7 @@ def testTheano():
 
 def run(binary=False, noise=None, nalpha=0, ndelta=0):
     # BN parameters
-    batch_size = 100  # default: 100
+    batch_size = 128  # default: 100
     print("batch_size = " + str(batch_size))
 
     # alpha is the exponential moving average factor
@@ -64,13 +64,13 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     print("epsilon = " + str(epsilon))
 
     # MLP parameters
-    num_units = 4096  # default: 4096
+    num_units = 300  # default: 4096
     print("num_units = " + str(num_units))
-    n_hidden_layers = 3  # default: 3
+    n_hidden_layers = 1  # default: 3
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
-    num_epochs = 1000  # default: 1000
+    num_epochs = 500  # default: 1000
     print("num_epochs = " + str(num_epochs))
 
     # Dropout parameters
@@ -100,15 +100,15 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     print("W_LR_scale = " + str(W_LR_scale))
 
     # Decaying LR
-    LR_start = .003  # default: .003
+    LR_start = 0.0001  # default: .003
     print("LR_start = " + str(LR_start))
-    LR_fin = 0.0000003  # default: 0.0000003
+    LR_fin = 0.0001  # default: 0.0000003
     print("LR_fin = " + str(LR_fin))
     LR_decay = (LR_fin / LR_start) ** (1. / num_epochs)
     print("LR_decay = " + str(LR_decay))
     # BTW, LR decay might good for the BN moving average...
 
-    save_path = "mnist_parameters.npz"  # default: "mnist_parameters.npz"
+    save_path = None  # default: "mnist_parameters.npz"
     print("save_path = " + str(save_path))
 
     # Load the dataset (https://github.com/mnielsen/neural-networks-and-deep-learning)
@@ -122,7 +122,7 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
     print("nalpha = " + str(nalpha))
     print("ndelta = " + str(ndelta))
 
-    train_set_size = 50000  # default: 50000
+    train_set_size = 10000  # default: 50000
     train_X, train_y = mnist.get_train_data(n_samples=train_set_size, noise=noise, alpha=nalpha, delta=ndelta)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
@@ -251,20 +251,20 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
         shuffle_parts)
 
     # Init csv file writer
-    # csvfile = open('./results/comparison.csv', 'a')
-    # csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    # csv_writer.writerow([binary, noise, nalpha, ndelta, test_err])
+    csvfile = open('./results/comparison.csv', 'a')
+    csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    csv_writer.writerow(["MLP {} Layer".format(n_hidden_layers), binary, nalpha, test_err])
 
-    # test_errors = np.zeros(train_losses.shape)
-    # test_errors[0] = test_err
-    # data = np.column_stack((train_losses, val_losses, val_errors, test_errors))
-    # header = "Train Loss, Validation Loss, Validation Error, Test Error"
-    # np.savetxt('./results/bin_{}_noise_{}_nalpha_{}_ndelta_{}.dat'.format(binary, noise, nalpha, ndelta), data, header=header)
+    test_errors = np.zeros(train_losses.shape)
+    test_errors[0] = test_err
+    data = np.column_stack((train_losses, val_losses, val_errors, test_errors))
+    header = "Train Loss, Validation Loss, Validation Error, Test Error"
+    np.savetxt('./results/mlp_{}_bin_{}_nalpha_{}.dat'.format(n_hidden_layers, binary, nalpha), data, header=header)
 
 
 if __name__ == "__main__":
-    #for alpha in np.arange(0, 51, 10):
-    #    for binary in [False, True]:
-    #        run(binary=binary, noise='u', nalpha=alpha, ndelta=0)
+    for nalpha in np.arange(0, 51, 10):
+        for binary in [False, True]:
+            run(binary=binary, noise='u', nalpha=nalpha, ndelta=0)
 
-    run(binary=True, noise=None, nalpha=0, ndelta=0)
+    print("\nDone\n")
