@@ -25,9 +25,10 @@ from mnist_reader import MnistReader
 
 import csv
 import argparse
+import datetime
 
 
-def run(binary=False, noise=None, nalpha=0, ndelta=0):
+def run(binary=False, noise=None, nalpha=0, result_path=None):
     # BN parameters
     batch_size = 128  # default: 100
     print("batch_size = " + str(batch_size))
@@ -95,15 +96,43 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
 
     print("noise = " + str(noise))
     print("nalpha = " + str(nalpha))
-    print("ndelta = " + str(ndelta))
 
     train_set_size = 10000  # default: 50000
-    train_X, train_y = mnist.get_train_data(n_samples=train_set_size, noise=noise, alpha=nalpha, delta=ndelta)
+    train_X, train_y = mnist.get_train_data(n_samples=train_set_size, noise=noise, alpha=nalpha)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
     print("train_set_size = "+str(train_y.shape[0]))
     print("validation_set_size = "+str(validation_y.shape[0]))
     print("test_set_size = "+str(test_y.shape[0]))
+
+    # Log output
+    with open(result_path + "params.txt", "a+") as l:
+        print("batch_size = " + str(batch_size), file=l)
+        print("alpha = " + str(alpha), file=l)
+        print("epsilon = " + str(epsilon), file=l)
+        print("num_units = " + str(num_units), file=l)
+        print("n_hidden_layers = " + str(n_hidden_layers), file=l)
+        print("num_epochs = " + str(num_epochs), file=l)
+        print("dropout_in = " + str(dropout_in), file=l)
+        print("dropout_hidden = " + str(dropout_hidden), file=l)
+        if binary:
+            print("activation = binary_net.binary_tanh_unit", file=l)
+        else:
+            print("activation = lasagne.nonlinearities.tanh", file=l)
+        print("binary = " + str(binary), file=l)
+        print("stochastic = " + str(stochastic), file=l)
+        print("H = " + str(H), file=l)
+        print("W_LR_scale = " + str(W_LR_scale), file=l)
+        print("LR_start = " + str(LR_start), file=l)
+        print("LR_fin = " + str(LR_fin), file=l)
+        print("LR_decay = " + str(LR_decay), file=l)
+        print("save_path = " + str(save_path), file=l)
+        print("shuffle_parts = " + str(shuffle_parts), file=l)
+        print("noise = " + str(noise), file=l)
+        print("nalpha = " + str(nalpha), file=l)
+        print("train_set_size = "+str(train_y.shape[0]), file=l)
+        print("validation_set_size = "+str(validation_y.shape[0]), file=l)
+        print("test_set_size = "+str(test_y.shape[0]), file=l)
 
     # bc01 format
     # Inputs in the range [-1,+1]
@@ -213,7 +242,7 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
 
     print('Training...')
 
-    train_losses, val_losses, val_errors, test_err = binary_net.train(
+    binary_net.train(
         train_fn, val_fn,
         mlp,
         batch_size,
@@ -223,28 +252,21 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
         validation_X, validation_y,
         test_X, test_y,
         save_path,
-        shuffle_parts)
-
-    # Init csv file writer
-    csvfile = open('./results/comparison.csv', 'a')
-    csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    csv_writer.writerow(["MLP {} Layer".format(n_hidden_layers), binary, nalpha, test_err])
-
-    test_errors = np.zeros(train_losses.shape)
-    test_errors[0] = test_err
-    data = np.column_stack((train_losses, val_losses, val_errors, test_errors))
-    header = "Train Loss, Validation Loss, Validation Error, Test Error"
-    np.savetxt('./results/mlp_{}_bin_{}_nalpha_{}.dat'.format(n_hidden_layers, binary, nalpha), data, header=header)
+        shuffle_parts,
+        result_path)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-b", type=bool, required=True)
-    parser.add_argument("-n", type=str, required=True)
+    parser.add_argument('--binary', dest='binary', action='store_true')
+    parser.set_defaults(binary=False)
     parser.add_argument("-a", type=int, required=True)
 
     args = parser.parse_args()
 
-    run(binary=args.b, noise=args.n, nalpha=args.a, ndelta=0)
+    result_path = "./results/" + str(datetime.datetime.now().isoformat()) + "/"
+    os.mkdir(result_path)
 
-    print("\nDone\n")
+    run(binary=args.binary, noise="u", nalpha=args.a, result_path=result_path)
+
+    print("\nDone")

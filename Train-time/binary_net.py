@@ -209,7 +209,8 @@ def train(train_fn,val_fn,
             X_val,y_val,
             X_test,y_test,
             save_path=None,
-            shuffle_parts=1):
+            shuffle_parts=1,
+            result_path=None):
     
     # A function which shuffles a dataset
     def shuffle(X,y):
@@ -285,10 +286,11 @@ def train(train_fn,val_fn,
     best_epoch = 1
     LR = LR_start
 
-    # Used for storing data
-    train_loss_list = []
-    val_loss_list = []
-    val_err_list = []
+    # Write header to performance data file
+    header = "Epoch, LR, Training Loss, Validation Loss, Validation Error, Best Epoch, " \
+             "Best Validation Error, Test Loss, Test Error"
+    with open(result_path + "performance.dat", "a+") as perffile:
+        np.savetxt(perffile, [], header=header)
 
     # We iterate over epochs:
     for epoch in range(num_epochs):
@@ -324,16 +326,26 @@ def train(train_fn,val_fn,
         print("  test loss:                     "+str(test_loss))
         print("  test error rate:               "+str(test_err)+"%")
 
-        train_loss_list.append(train_loss)
-        val_loss_list.append(val_loss)
-        val_err_list.append(val_err)
-        
+        # Log output
+        with open(result_path + "train_log.txt", "a+") as l:
+            print("Epoch " + str(epoch + 1) + " of " + str(num_epochs) + " took " + str(epoch_duration) + "s", file=l)
+            print("  LR:                            " + str(LR), file=l)
+            print("  training loss:                 " + str(train_loss), file=l)
+            print("  validation loss:               " + str(val_loss), file=l)
+            print("  validation error rate:         " + str(val_err) + "%", file=l)
+            print("  best epoch:                    " + str(best_epoch),  file=l)
+            print("  best validation error rate:    " + str(best_val_err) + "%", file=l)
+            print("  test loss:                     " + str(test_loss), file=l)
+            print("  test error rate:               " + str(test_err) + "%", file=l)
+
+        # Write performance data to file
+        data = np.column_stack((epoch + 1, LR, train_loss, val_loss, val_err, best_epoch,
+                                best_val_err, test_loss, test_err))
+        with open(result_path + "performance.dat", "a+") as perffile:
+            np.savetxt(perffile, data)
+
         # decay the LR
         LR *= LR_decay
-
-    train_losses = np.array(train_loss_list)
-    val_losses = np.array(val_loss_list)
-    val_errors = np.array(val_err_list)
 
     # # After training, get the predicted outputs of the MLP to assemble the confusion matrix
     # test_output = lasagne.layers.get_output(model, inputs=X_test, deterministic=True)
@@ -350,5 +362,3 @@ def train(train_fn,val_fn,
     #
     # np.savetxt('./results/confusion.dat', confusion_matrix)
     # print(confusion_matrix)
-
-    return train_losses, val_losses, val_errors, test_err
