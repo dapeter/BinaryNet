@@ -24,32 +24,7 @@ from collections import OrderedDict
 from mnist_reader import MnistReader
 
 import csv
-
-# http://deeplearning.net/software/theano/tutorial/using_gpu.html
-def testTheano():
-    from theano import function, config, shared, tensor
-    import numpy
-    import time
-
-    vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
-    iters = 1000
-
-    rng = numpy.random.RandomState(22)
-    x = shared(numpy.asarray(rng.rand(vlen), config.floatX))
-    f = function([], tensor.exp(x))
-    print(f.maker.fgraph.toposort())
-    t0 = time.time()
-    for i in range(iters):
-        r = f()
-    t1 = time.time()
-    print("Looping %d times took %f seconds" % (iters, t1 - t0))
-    print("Result is %s" % (r,))
-    if numpy.any([isinstance(x.op, tensor.Elemwise) and
-                ('Gpu' not in type(x.op).__name__)
-                for x in f.maker.fgraph.toposort()]):
-        print('Used the cpu')
-    else:
-        print('Used the gpu')
+import argparse
 
 
 def run(binary=False, noise=None, nalpha=0, ndelta=0):
@@ -263,7 +238,13 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
 
 
 if __name__ == "__main__":
-    for binary in [False, True]:
-        run(binary=binary, noise='u', nalpha=20, ndelta=0)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-b", type=bool, required=True)
+    parser.add_argument("-n", type=str, required=True)
+    parser.add_argument("-a", type=int, required=True)
+
+    args = parser.parse_args()
+
+    run(binary=args.b, noise=args.n, nalpha=args.a, ndelta=0)
 
     print("\nDone\n")
