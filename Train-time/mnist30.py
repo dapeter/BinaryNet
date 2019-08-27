@@ -264,6 +264,6 @@ def run(binary=False, noise=None, nalpha=0, ndelta=0):
 
 if __name__ == "__main__":
     for binary in [False, True]:
-        run(binary=binary, noise='u', nalpha=20, ndelta=0)
+        run(binary=binary, noise='u', nalpha=30, ndelta=0)
 
     print("\nDone\n")
