@@ -76,9 +76,9 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("W_LR_scale = " + str(W_LR_scale))
 
     # Decaying LR
-    LR_start = 0.0001  # default: .003
+    LR_start = 0.01  # default: .003
     print("LR_start = " + str(LR_start))
-    LR_fin = 0.0001  # default: 0.0000003
+    LR_fin = 0.00001  # default: 0.0000003
     print("LR_fin = " + str(LR_fin))
     LR_decay = (LR_fin / LR_start) ** (1. / num_epochs)
     print("LR_decay = " + str(LR_decay))
