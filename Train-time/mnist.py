@@ -46,7 +46,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
-    num_epochs = 300  # default: 1000
+    num_epochs = 500  # default: 1000
     print("num_epochs = " + str(num_epochs))
 
     # Dropout parameters

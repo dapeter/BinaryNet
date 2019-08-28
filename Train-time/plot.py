@@ -1,36 +1,40 @@
 import os
-import re
+from glob import glob
 import numpy as np
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    result_dir = "./results/"
-
-    for root, dirs, data_files in os.walk(result_dir):
-        data_files = [fname for fname in data_files if fname.endswith(".dat")]
+    data_folders = glob('./results/*/')
 
     data = []
 
-    for fname in data_files:
-        data = np.loadtxt(result_dir + fname)
-        fname = fname.replace(".dat", "")
+    for folder in data_folders:
+        data = np.loadtxt(folder + "performance.dat")
 
-        fname_split = fname.split("_")
-        parameters = [fname_split[i] for i in range(1, len(fname_split), 2)]
-        parameters[0] = (parameters[0] == "True")
-        parameters[2] = int(parameters[2])
+        # Epoch, LR, Training Loss, Validation Loss, Validation Error,
+        # Best Epoch, Best Validation Error, Test Loss, Test Error
+        train_loss = data[:, 2]
+        val_loss = data[:, 3]
+        test_loss = data[:, 7]
+
+        val_error = data[:, 4]
+        test_error = data[:, 8]
+
+        best_epoch = data[-1, 5]
 
         fig, ax_list = plt.subplots(1, 2)
         plt.tight_layout(pad=2, w_pad=2, h_pad=1)
 
-        ax_list[0].plot(data[:, 0], color='blue', label='train loss', lw=2)
-        ax_list[0].plot(data[:, 1], color='green', label='val loss', lw=2)
+        ax_list[0].plot(train_loss, color='blue', label='train loss', lw=2)
+        ax_list[0].plot(val_loss, color='green', label='val loss', lw=2)
+        ax_list[0].plot(test_loss, color='red', label='test loss', lw=2)
         ax_list[0].legend(loc="upper right")
 
         ax_list[1].set_ylim([0, 100])
-        ax_list[1].plot(data[:, 2], color='orange', label='val error', lw=2)
-        ax_list[1].axhline(y=data[:, 3][0], color='red', linestyle='--', label='best test error', lw=2)
+        ax_list[1].plot(val_error, color='green', label='val error', lw=2)
+        ax_list[1].plot(test_error, color='red', label='test error', lw=2)
+        ax_list[1].axvline(x=best_epoch, color='gray', linestyle='--', label='best epoch', lw=2)
         ax_list[1].legend(loc="upper right")
 
-        plt.savefig("./plots/" + fname + ".png")
+        plt.savefig(folder + "performance.png")
         plt.close(fig)
