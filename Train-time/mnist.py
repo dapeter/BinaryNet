@@ -42,7 +42,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     # MLP parameters
     num_units = 300  # default: 4096
     print("num_units = " + str(num_units))
-    n_hidden_layers = 1  # default: 3
+    n_hidden_layers = 2  # default: 3
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
