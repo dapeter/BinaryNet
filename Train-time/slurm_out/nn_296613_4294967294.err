@@ -1,0 +1,2 @@
+/var/lib/slurm-llnl/slurmd/job296613/slurm_script: line 13: 14841 Killed                  python mnist.py --binary -a 20
+slurmstepd-gpu2: error: Detected 1 oom-kill event(s) in step 296613.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
