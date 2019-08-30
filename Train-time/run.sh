@@ -6,9 +6,9 @@
 #SBATCH --export=HOME=/clusterFS/home/student/deekay,PATH
 #SBATCH --time=04:00:00
 #SBATCH --partition=gpu,gpu2,gpu6
-#SBATCH --array=50
+#SBATCH --array=0-50:5%2
 #SBATCH --gres=gpu:TeslaK40c:1
-#SBATCH --mem 8G
+#SBATCH --mem 6G
 #SBATCH --cpus-per-gpu=4
 
 source $HOME/.bashrc
