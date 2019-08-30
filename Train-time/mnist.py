@@ -42,7 +42,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     # MLP parameters
     num_units = 300  # default: 4096
     print("num_units = " + str(num_units))
-    n_hidden_layers = 2  # default: 3
+    n_hidden_layers = 1  # default: 3
     print("n_hidden_layers = " + str(n_hidden_layers))
 
     # Training parameters
@@ -76,9 +76,9 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("W_LR_scale = " + str(W_LR_scale))
 
     # Decaying LR
-    LR_start = 0.01  # default: .003
+    LR_start = 0.005  # default: .003
     print("LR_start = " + str(LR_start))
-    LR_fin = 0.00001  # default: 0.0000003
+    LR_fin = 0.0000005  # default: 0.0000003
     print("LR_fin = " + str(LR_fin))
     LR_decay = (LR_fin / LR_start) ** (1. / num_epochs)
     print("LR_decay = " + str(LR_decay))

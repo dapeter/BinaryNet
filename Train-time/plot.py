@@ -9,7 +9,10 @@ if __name__ == "__main__":
     data = []
 
     for folder in data_folders:
-        data = np.loadtxt(folder + "performance.dat")
+        if os.path.isfile(folder + "performance.dat"):
+            data = np.loadtxt(folder + "performance.dat")
+        else:
+            continue
 
         # Epoch, LR, Training Loss, Validation Loss, Validation Error,
         # Best Epoch, Best Validation Error, Test Loss, Test Error
