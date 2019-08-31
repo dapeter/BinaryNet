@@ -40,8 +40,14 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("epsilon = " + str(epsilon))
 
     # Training parameters
-    num_epochs = 200  # default: 500
+    num_epochs = 50  # default: 500
     print("num_epochs = " + str(num_epochs))
+
+    # Dropout parameters
+    dropout_in = .2  # default: .2
+    print("dropout_in = " + str(dropout_in))
+    dropout_hidden = .5  # default: .5
+    print("dropout_hidden = " + str(dropout_hidden))
 
     # BinaryOut
     if binary:
@@ -82,7 +88,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("noise = " + str(noise))
     print("nalpha = " + str(nalpha))
 
-    train_set_size = 2500  # default: 45000
+    train_set_size = 10000  # default: 45000
     train_X, train_y = mnist.get_train_data(n_samples=train_set_size, noise=noise, alpha=nalpha)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
@@ -96,6 +102,8 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
         print("alpha = " + str(alpha), file=l)
         print("epsilon = " + str(epsilon), file=l)
         print("num_epochs = " + str(num_epochs), file=l)
+        print("dropout_in = " + str(dropout_in), file=l)
+        print("dropout_hidden = " + str(dropout_hidden), file=l)
         if binary:
             print("activation = binary_net.binary_tanh_unit", file=l)
         else:
@@ -147,6 +155,10 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
         shape=(None, 1, 28, 28),
         input_var=input)
 
+    cnn = lasagne.layers.DropoutLayer(
+        cnn,
+        p=dropout_in)
+
     # 32C3-64C3-P2
     cnn = binary_net.Conv2DLayer(
         cnn,
@@ -190,6 +202,10 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
         cnn,
         nonlinearity=activation)
 
+    cnn = lasagne.layers.DropoutLayer(
+        cnn,
+        p=dropout_hidden)
+
     # 128FP-10FP
     cnn = binary_net.DenseLayer(
         cnn,
@@ -208,6 +224,10 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     cnn = lasagne.layers.NonlinearityLayer(
         cnn,
         nonlinearity=activation)
+
+    cnn = lasagne.layers.DropoutLayer(
+        cnn,
+        p=dropout_hidden)
 
     cnn = binary_net.DenseLayer(
         cnn,
