@@ -40,7 +40,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("epsilon = " + str(epsilon))
 
     # Training parameters
-    num_epochs = 50  # default: 500
+    num_epochs = 100  # default: 500
     print("num_epochs = " + str(num_epochs))
 
     # Dropout parameters
@@ -242,6 +242,10 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
         cnn,
         epsilon=epsilon,
         alpha=alpha)
+
+    cnn = lasagne.layers.NonlinearityLayer(
+        cnn,
+        nonlinearity=lasagne.nonlinearities.softmax)
 
     train_output = lasagne.layers.get_output(cnn, deterministic=False)
 
