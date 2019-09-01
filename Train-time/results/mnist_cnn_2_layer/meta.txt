@@ -1,0 +1,3 @@
+dataset=mnist
+network=cnn
+layer=2

@@ -2,144 +2,50 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+from glob import glob
 
-data_dirs = ["single_layer_64", "single_layer_256", "single_layer_1024"]
-comp_files = ["./finished_runs/" + d + "/results/comparison.csv" for d in data_dirs]
 
-for fname in comp_files:
-    if not os.path.isfile(fname):
-        raise FileNotFoundError
+data_dirs = ["mnist_mlp_1_layer", "mnist_mlp_2_layer", "mnist_cnn_2_layer"]
 
-# Single plot for every architecture
-for i, fname in enumerate(comp_files):
-    # Init csv file reader
-    csvfile = open(fname, 'r')
-    csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
-    binary = []
-    non_binary = []
-    for row in csv_reader:
-        if row[0] == "True":
-            binary.append([float(row[2]), float(row[4])])
-        elif row[0] == "False":
-            non_binary.append([float(row[2]), float(row[4])])
-        else:
-            raise ValueError
-
-    binary = np.array(binary)
-    non_binary = np.array(non_binary)
-
-    fig = plt.plot()
-    plt.grid()
-    plt.xlim([0, 50])
-    plt.ylim([70, 100])
-    plt.title("MNIST - " + data_dirs[i])
-    plt.xlabel("alpha")
-    plt.ylabel("prediction accuracy")
-
-    plt.plot(non_binary[:, 0], 100 - non_binary[:, 1], color="red", linestyle="-", label="NN")
-    plt.plot(binary[:, 0], 100-binary[:, 1], color="green", linestyle="--", label="BNN")
-    plt.legend(loc="upper right")
-
-    plt.savefig("./plots/MNIST_{}.png".format(data_dirs[i]))
-    plt.close()
-
-# Plot comparision of NNs
 fig = plt.plot()
 plt.grid()
-plt.xlim([0, 50])
-plt.ylim([70, 100])
 plt.xlabel("alpha")
 plt.ylabel("prediction accuracy")
-plt.title("MNIST - NN")
-color = ["red", "green", "blue"]
-for i, fname in enumerate(comp_files):
-    # Init csv file reader
-    csvfile = open(fname, 'r')
-    csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-    non_binary = []
-    for row in csv_reader:
-        if row[0] == "True":
-            pass
-        elif row[0] == "False":
-            non_binary.append([float(row[2]), float(row[4])])
+for data_dir in data_dirs:
+    sub_dirs = glob('./results/' + data_dir + "/*/")
+
+    binary_performance = []
+    nonbinary_performance = []
+
+    for sub_dir in sub_dirs:
+        meta = {}
+        with open(sub_dir + "params.txt", "r") as param_file:
+            for line in param_file:
+                key, val = line.partition("=")[::2]
+                meta[key.strip()] = val.strip()
+
+        alpha = int(meta["nalpha"])
+        accuracy = np.loadtxt(sub_dir + "performance.dat")[-1, 8]
+        if meta["binary"] == "True":
+            binary_performance.append([alpha, accuracy])
+        elif meta["binary"] == "False":
+            nonbinary_performance.append([alpha, accuracy])
         else:
-            raise ValueError
+            print("???")
+            exit(-1)
 
-    non_binary = np.array(non_binary)
+    binary_performance = np.sort(np.array(binary_performance), axis=0)
+    nonbinary_performance = np.sort(np.array(nonbinary_performance), axis=0)
+    meta = {}
+    with open('./results/' + data_dir + "/meta.txt", "r") as param_file:
+        for line in param_file:
+            key, val = line.partition("=")[::2]
+            meta[key.strip()] = val.strip()
 
-    plt.plot(non_binary[:, 0], 100-non_binary[:, 1], color=color[i], linestyle="-", label=data_dirs[i])
+    plt.plot(nonbinary_performance[:, 0], 100-nonbinary_performance[:, 1], linestyle="-", label=meta["network"] + meta["layer"]+"nb")
+    plt.plot(binary_performance[:, 0], 100-binary_performance[:, 1], linestyle="--", label=meta["network"] + meta["layer"]+"b")
 
 plt.legend(loc="upper right")
-plt.savefig("./plots/MNIST_nn_comp.png")
-plt.close()
-
-# Plot comparision of BNNs
-fig = plt.plot()
-plt.grid()
-plt.xlim([0, 50])
-plt.ylim([70, 100])
-plt.xlabel("alpha")
-plt.ylabel("prediction accuracy")
-plt.title("MNIST - BNN")
-color = ["red", "green", "blue"]
-for i, fname in enumerate(comp_files):
-    # Init csv file reader
-    csvfile = open(fname, 'r')
-    csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
-    binary = []
-    for row in csv_reader:
-        if row[0] == "True":
-            binary.append([float(row[2]), float(row[4])])
-        elif row[0] == "False":
-            pass
-        else:
-            raise ValueError
-
-    binary = np.array(binary)
-
-    plt.plot(binary[:, 0], 100-binary[:, 1], color=color[i], linestyle="-", label=data_dirs[i])
-
-plt.legend(loc="upper right")
-plt.savefig("./plots/MNIST_bnn_comp.png")
-plt.close()
-
-# Plot comparision for cifar CNN/BCNN
-data_dirs = ["cnn_cifar"]
-comp_files = ["./finished_runs/" + d + "/results/comparison.csv" for d in data_dirs]
-
-# Single plot for every architecture
-for i, fname in enumerate(comp_files):
-    # Init csv file reader
-    csvfile = open(fname, 'r')
-    csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
-    binary = []
-    non_binary = []
-    for row in csv_reader:
-        if row[0] == "True":
-            binary.append([float(row[2]), float(row[4])])
-        elif row[0] == "False":
-            non_binary.append([float(row[2]), float(row[4])])
-        else:
-            raise ValueError
-
-    binary = np.array(binary)
-    non_binary = np.array(non_binary)
-
-    fig = plt.plot()
-    plt.grid()
-    plt.xlim([0, 5])
-    plt.ylim([40, 80])
-    plt.title("cifar10 - " + data_dirs[i])
-    plt.xlabel("alpha")
-    plt.ylabel("prediction accuracy")
-
-    plt.plot(non_binary[:, 0], 100 - non_binary[:, 1], color="red", linestyle="-", label="CNN")
-    plt.plot(binary[:, 0], 100-binary[:, 1], color="green", linestyle="--", label="BCNN")
-    plt.legend(loc="upper right")
-
-    plt.savefig("./plots/cifar10_{}.png".format(data_dirs[i]))
-    plt.close()
+plt.show()
+exit(0)
