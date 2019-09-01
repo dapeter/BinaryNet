@@ -1,0 +1,900 @@
+Epoch 1 of 100 took 70.83496952056885s
+  LR:                            0.005
+  training loss:                 1.1700052033110362
+  validation loss:               1.1556477944056194
+  validation error rate:         24.569310897435898%
+  best epoch:                    1
+  best validation error rate:    24.569310897435898%
+  test loss:                     1.1561517593188164
+  test error rate:               25.49078525641026%
+Epoch 2 of 100 took 70.83396363258362s
+  LR:                            0.004560054196779549
+  training loss:                 1.1696558679749327
+  validation loss:               1.1533553034831316
+  validation error rate:         20.51282051282051%
+  best epoch:                    2
+  best validation error rate:    20.51282051282051%
+  test loss:                     1.1538786506041503
+  test error rate:               21.624599358974358%
+Epoch 3 of 100 took 70.85000538825989s
+  LR:                            0.004158818855513355
+  training loss:                 1.1695981094749963
+  validation loss:               1.1490888427465389
+  validation error rate:         18.108974358974358%
+  best epoch:                    3
+  best validation error rate:    18.108974358974358%
+  test loss:                     1.149587700000176
+  test error rate:               18.659855769230766%
+Epoch 4 of 100 took 70.84256219863892s
+  LR:                            0.0037928878751459193
+  training loss:                 1.1695527351484065
+  validation loss:               1.1503919149056459
+  validation error rate:         16.937099358974358%
+  best epoch:                    4
+  best validation error rate:    16.937099358974358%
+  test loss:                     1.1510209853832538
+  test error rate:               18.209134615384613%
+Epoch 5 of 100 took 70.83609199523926s
+  LR:                            0.003459154854594683
+  training loss:                 1.1695187398573248
+  validation loss:               1.14802036071435
+  validation error rate:         15.815304487179487%
+  best epoch:                    5
+  best validation error rate:    15.815304487179487%
+  test loss:                     1.1486404477021632
+  test error rate:               16.59655448717949%
+Epoch 6 of 100 took 72.14963722229004s
+  LR:                            0.003154786722400967
+  training loss:                 1.1694532413308214
+  validation loss:               1.1472328962423863
+  validation error rate:         13.541666666666666%
+  best epoch:                    6
+  best validation error rate:    13.541666666666666%
+  test loss:                     1.1478150976009858
+  test error rate:               14.192708333333334%
+Epoch 7 of 100 took 70.80023622512817s
+  LR:                            0.0028771996866857855
+  training loss:                 1.169398576457326
+  validation loss:               1.1452842415907445
+  validation error rate:         11.278044871794872%
+  best epoch:                    7
+  best validation error rate:    11.278044871794872%
+  test loss:                     1.1459156886125221
+  test error rate:               11.828926282051281%
+Epoch 8 of 100 took 70.41653060913086s
+  LR:                            0.0026240373012488636
+  training loss:                 1.1693376895131133
+  validation loss:               1.1434941597473927
+  validation error rate:         11.748798076923077%
+  best epoch:                    7
+  best validation error rate:    11.278044871794872%
+  test loss:                     1.1459156886125221
+  test error rate:               11.828926282051281%
+Epoch 9 of 100 took 70.819664478302s
+  LR:                            0.0023931504616131923
+  training loss:                 1.1692719971261374
+  validation loss:               1.1440835900795765
+  validation error rate:         10.436698717948719%
+  best epoch:                    9
+  best validation error rate:    10.436698717948719%
+  test loss:                     1.1448603180738597
+  test error rate:               11.348157051282051%
+Epoch 10 of 100 took 70.37870836257935s
+  LR:                            0.0021825791612008305
+  training loss:                 1.1692059009540372
+  validation loss:               1.1426658355272734
+  validation error rate:         10.446714743589745%
+  best epoch:                    9
+  best validation error rate:    10.436698717948719%
+  test loss:                     1.1448603180738597
+  test error rate:               11.348157051282051%
+Epoch 11 of 100 took 70.79550099372864s
+  LR:                            0.0019905358527674867
+  training loss:                 1.1691810298983645
+  validation loss:               1.1399372861935542
+  validation error rate:         10.216346153846153%
+  best epoch:                    11
+  best validation error rate:    10.216346153846153%
+  test loss:                     1.141018305069361
+  test error rate:               11.167868589743591%
+Epoch 12 of 100 took 70.39584684371948s
+  LR:                            0.0018153902738505072
+  training loss:                 1.169119827485666
+  validation loss:               1.14103779120323
+  validation error rate:         11.02764423076923%
+  best epoch:                    11
+  best validation error rate:    10.216346153846153%
+  test loss:                     1.141018305069361
+  test error rate:               11.167868589743591%
+Epoch 13 of 100 took 70.80467176437378s
+  LR:                            0.0016556556074129559
+  training loss:                 1.1690733585415818
+  validation loss:               1.139886470941397
+  validation error rate:         10.196314102564102%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 14 of 100 took 70.37758278846741s
+  LR:                            0.0015099758602010085
+  training loss:                 1.1690149659063758
+  validation loss:               1.1396415371161241
+  validation error rate:         11.187900641025642%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 15 of 100 took 70.38559198379517s
+  LR:                            0.0013771143516690836
+  training loss:                 1.16898179170562
+  validation loss:               1.1397591141554027
+  validation error rate:         11.298076923076923%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 16 of 100 took 70.39749002456665s
+  LR:                            0.0012559432157547904
+  training loss:                 1.168931780646487
+  validation loss:               1.1396072873702416
+  validation error rate:         11.838942307692307%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 17 of 100 took 70.37966060638428s
+  LR:                            0.0011454338263838868
+  training loss:                 1.1688669981752955
+  validation loss:               1.1392178856409514
+  validation error rate:         11.929086538461538%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 18 of 100 took 70.37026119232178s
+  LR:                            0.0010446480654270202
+  training loss:                 1.168836861703454
+  validation loss:               1.1384366414485834
+  validation error rate:         11.848958333333332%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 19 of 100 took 70.37961840629578s
+  LR:                            0.000952730358981624
+  training loss:                 1.1687947682491162
+  validation loss:               1.137808506305401
+  validation error rate:         12.219551282051281%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 20 of 100 took 70.40591406822205s
+  LR:                            0.0008689004143746881
+  training loss:                 1.1687473696906392
+  validation loss:               1.1383412816585639
+  validation error rate:         13.511618589743591%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 21 of 100 took 70.38181114196777s
+  LR:                            0.0007924465962305571
+  training loss:                 1.1686883909673225
+  validation loss:               1.1384367102231734
+  validation error rate:         13.782051282051283%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 22 of 100 took 70.38760566711426s
+  LR:                            0.0007227198853729641
+  training loss:                 1.1686680655653883
+  validation loss:               1.1378493110338848
+  validation error rate:         13.371394230769232%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 23 of 100 took 70.41776442527771s
+  LR:                            0.0006591283692782039
+  training loss:                 1.168652720349591
+  validation loss:               1.136220633983612
+  validation error rate:         13.641826923076922%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 24 of 100 took 70.35829520225525s
+  LR:                            0.0006011322173087067
+  training loss:                 1.1685848252075475
+  validation loss:               1.1372185364747658
+  validation error rate:         14.743589743589745%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 25 of 100 took 70.37396264076233s
+  LR:                            0.0005482390980715928
+  training loss:                 1.1685589552652544
+  validation loss:               1.137229934716836
+  validation error rate:         14.252804487179487%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 26 of 100 took 70.38593769073486s
+  LR:                            0.0005000000000000002
+  training loss:                 1.168589751022618
+  validation loss:               1.1368005734223585
+  validation error rate:         14.723557692307693%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 27 of 100 took 70.45369601249695s
+  LR:                            0.0004560054196779551
+  training loss:                 1.1684951977031988
+  validation loss:               1.137222048563835
+  validation error rate:         14.673477564102564%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 28 of 100 took 70.36474466323853s
+  LR:                            0.0004158818855513357
+  training loss:                 1.1685201255286612
+  validation loss:               1.1363691702867165
+  validation error rate:         14.863782051282051%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 29 of 100 took 70.39072680473328s
+  LR:                            0.0003792887875145921
+  training loss:                 1.168485414836465
+  validation loss:               1.1357917510546172
+  validation error rate:         14.853766025641027%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 30 of 100 took 70.41131687164307s
+  LR:                            0.00034591548545946844
+  training loss:                 1.168449191640063
+  validation loss:               1.136379015751374
+  validation error rate:         15.134214743589745%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 31 of 100 took 70.44535303115845s
+  LR:                            0.0003154786722400968
+  training loss:                 1.1684357971679873
+  validation loss:               1.1362717701838567
+  validation error rate:         15.394631410256409%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 32 of 100 took 70.36628985404968s
+  LR:                            0.00028771996866857865
+  training loss:                 1.1684235988593683
+  validation loss:               1.135773709187141
+  validation error rate:         15.394631410256409%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 33 of 100 took 70.40342497825623s
+  LR:                            0.00026240373012488647
+  training loss:                 1.1684057163029182
+  validation loss:               1.136584459206997
+  validation error rate:         15.745192307692307%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 34 of 100 took 70.3669171333313s
+  LR:                            0.00023931504616131932
+  training loss:                 1.1683559303603521
+  validation loss:               1.1362954867191803
+  validation error rate:         15.775240384615385%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 35 of 100 took 70.44510769844055s
+  LR:                            0.00021825791612008314
+  training loss:                 1.168345227256054
+  validation loss:               1.135911796337519
+  validation error rate:         16.476362179487182%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 36 of 100 took 70.40548658370972s
+  LR:                            0.00019905358527674876
+  training loss:                 1.1683327731562825
+  validation loss:               1.1354843576749165
+  validation error rate:         16.24599358974359%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 37 of 100 took 70.37306571006775s
+  LR:                            0.0001815390273850508
+  training loss:                 1.1683562560052407
+  validation loss:               1.1356055385027177
+  validation error rate:         16.446314102564102%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 38 of 100 took 70.37763476371765s
+  LR:                            0.00016556556074129569
+  training loss:                 1.168309816427347
+  validation loss:               1.1357622498121016
+  validation error rate:         16.61658653846154%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 39 of 100 took 70.38074922561646s
+  LR:                            0.00015099758602010095
+  training loss:                 1.1683067071001705
+  validation loss:               1.1356456661835694
+  validation error rate:         16.706730769230766%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 40 of 100 took 70.453928232193s
+  LR:                            0.00013771143516690845
+  training loss:                 1.1683345207353917
+  validation loss:               1.1352982291808495
+  validation error rate:         16.60657051282051%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 41 of 100 took 70.37613248825073s
+  LR:                            0.0001255943215754791
+  training loss:                 1.1682821370479537
+  validation loss:               1.1355312527754369
+  validation error rate:         16.646634615384613%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 42 of 100 took 70.38364171981812s
+  LR:                            0.00011454338263838875
+  training loss:                 1.1683239747111391
+  validation loss:               1.1359339218873243
+  validation error rate:         16.676682692307693%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 43 of 100 took 70.40030145645142s
+  LR:                            0.00010446480654270207
+  training loss:                 1.1683147201450859
+  validation loss:               1.1358368595441182
+  validation error rate:         16.60657051282051%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 44 of 100 took 70.4184103012085s
+  LR:                            9.527303589816245e-05
+  training loss:                 1.1682404231007506
+  validation loss:               1.135500851349953
+  validation error rate:         16.98717948717949%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 45 of 100 took 70.38559937477112s
+  LR:                            8.689004143746886e-05
+  training loss:                 1.1682744105414646
+  validation loss:               1.1359370870467944
+  validation error rate:         16.97716346153846%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 46 of 100 took 70.4219491481781s
+  LR:                            7.924465962305575e-05
+  training loss:                 1.1682812309846646
+  validation loss:               1.135077205988077
+  validation error rate:         16.917067307692307%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 47 of 100 took 70.397696018219s
+  LR:                            7.227198853729644e-05
+  training loss:                 1.168258741934125
+  validation loss:               1.1351126524118276
+  validation error rate:         16.81690705128205%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 48 of 100 took 70.43314409255981s
+  LR:                            6.591283692782041e-05
+  training loss:                 1.1682874290681466
+  validation loss:               1.1349040392117622
+  validation error rate:         16.967147435897438%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 49 of 100 took 70.39917373657227s
+  LR:                            6.0113221730870696e-05
+  training loss:                 1.1681865962540232
+  validation loss:               1.1348900489318066
+  validation error rate:         17.067307692307693%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 50 of 100 took 70.4190104007721s
+  LR:                            5.48239098071593e-05
+  training loss:                 1.1682931224747402
+  validation loss:               1.135324673774915
+  validation error rate:         16.907051282051285%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 51 of 100 took 70.35858345031738s
+  LR:                            5.000000000000004e-05
+  training loss:                 1.1682582733107776
+  validation loss:               1.1357825383161888
+  validation error rate:         16.907051282051285%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 52 of 100 took 70.43330001831055s
+  LR:                            4.560054196779553e-05
+  training loss:                 1.1682750865453626
+  validation loss:               1.135774199779217
+  validation error rate:         17.137419871794872%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 53 of 100 took 70.45594596862793s
+  LR:                            4.158818855513359e-05
+  training loss:                 1.1682172724386541
+  validation loss:               1.1355519279455528
+  validation error rate:         16.907051282051285%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 54 of 100 took 70.40005993843079s
+  LR:                            3.7928878751459227e-05
+  training loss:                 1.168215848251087
+  validation loss:               1.135467257255163
+  validation error rate:         17.00721153846154%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 55 of 100 took 70.46707367897034s
+  LR:                            3.459154854594686e-05
+  training loss:                 1.1682711007391535
+  validation loss:               1.135392007155296
+  validation error rate:         17.177483974358974%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 56 of 100 took 70.36284971237183s
+  LR:                            3.1547867224009694e-05
+  training loss:                 1.1682605066677418
+  validation loss:               1.1348555042193487
+  validation error rate:         17.197516025641026%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 57 of 100 took 70.36441087722778s
+  LR:                            2.8771996866857876e-05
+  training loss:                 1.1682870002054586
+  validation loss:               1.1348425822380261
+  validation error rate:         17.277644230769234%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 58 of 100 took 70.37427830696106s
+  LR:                            2.6240373012488657e-05
+  training loss:                 1.1682710678112216
+  validation loss:               1.1347800737772233
+  validation error rate:         17.20753205128205%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 59 of 100 took 70.37517809867859s
+  LR:                            2.3931504616131942e-05
+  training loss:                 1.16820201270464
+  validation loss:               1.1350835653451772
+  validation error rate:         17.407852564102562%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 60 of 100 took 70.38878893852234s
+  LR:                            2.182579161200832e-05
+  training loss:                 1.1682351664799016
+  validation loss:               1.135445420558636
+  validation error rate:         17.227564102564102%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 61 of 100 took 70.39872241020203s
+  LR:                            1.9905358527674885e-05
+  training loss:                 1.1682251500647243
+  validation loss:               1.1351672945878444
+  validation error rate:         17.197516025641026%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 62 of 100 took 70.3769142627716s
+  LR:                            1.8153902738505087e-05
+  training loss:                 1.168228349162311
+  validation loss:               1.135823592161521
+  validation error rate:         17.307692307692307%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 63 of 100 took 70.39114546775818s
+  LR:                            1.6556556074129572e-05
+  training loss:                 1.1682197662388407
+  validation loss:               1.1353652492547646
+  validation error rate:         17.39783653846154%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 64 of 100 took 70.3716721534729s
+  LR:                            1.5099758602010098e-05
+  training loss:                 1.1681768878930952
+  validation loss:               1.1353939603536556
+  validation error rate:         17.327724358974358%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 65 of 100 took 70.39138650894165s
+  LR:                            1.3771143516690849e-05
+  training loss:                 1.1682885538514067
+  validation loss:               1.135845931676718
+  validation error rate:         17.227564102564102%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 66 of 100 took 70.36382412910461s
+  LR:                            1.2559432157547916e-05
+  training loss:                 1.1682384255455762
+  validation loss:               1.1358302159187121
+  validation error rate:         17.287660256410255%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 67 of 100 took 70.37249827384949s
+  LR:                            1.145433826383888e-05
+  training loss:                 1.168240835172374
+  validation loss:               1.1355631427887158
+  validation error rate:         17.127403846153847%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 68 of 100 took 70.35451436042786s
+  LR:                            1.0446480654270211e-05
+  training loss:                 1.1682330004325727
+  validation loss:               1.1356947116362743
+  validation error rate:         17.297676282051285%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 69 of 100 took 70.37459969520569s
+  LR:                            9.527303589816249e-06
+  training loss:                 1.1682257211062965
+  validation loss:               1.1358063755891261
+  validation error rate:         17.41786858974359%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 70 of 100 took 70.39366173744202s
+  LR:                            8.689004143746889e-06
+  training loss:                 1.1682748465276347
+  validation loss:               1.1347576181093852
+  validation error rate:         17.227564102564102%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 71 of 100 took 70.37205743789673s
+  LR:                            7.924465962305577e-06
+  training loss:                 1.1682329947628627
+  validation loss:               1.135534445444743
+  validation error rate:         17.117387820512818%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 72 of 100 took 70.37290549278259s
+  LR:                            7.227198853729647e-06
+  training loss:                 1.1682470911886633
+  validation loss:               1.1352837956868684
+  validation error rate:         17.538060897435898%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 73 of 100 took 70.39069414138794s
+  LR:                            6.591283692782044e-06
+  training loss:                 1.1682324402216004
+  validation loss:               1.1357383391796014
+  validation error rate:         17.227564102564102%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 74 of 100 took 70.35104370117188s
+  LR:                            6.011322173087073e-06
+  training loss:                 1.1682465520573826
+  validation loss:               1.1352549607937152
+  validation error rate:         17.277644230769234%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 75 of 100 took 70.42359185218811s
+  LR:                            5.482390980715933e-06
+  training loss:                 1.1682054353923332
+  validation loss:               1.1354326880895174
+  validation error rate:         17.267628205128204%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 76 of 100 took 70.38219285011292s
+  LR:                            5.000000000000007e-06
+  training loss:                 1.1682477718446314
+  validation loss:               1.1357282002766926
+  validation error rate:         17.197516025641026%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 77 of 100 took 70.38766431808472s
+  LR:                            4.560054196779555e-06
+  training loss:                 1.1682552181366013
+  validation loss:               1.1352478449161236
+  validation error rate:         17.427884615384613%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 78 of 100 took 70.38133239746094s
+  LR:                            4.158818855513361e-06
+  training loss:                 1.1682366637921915
+  validation loss:               1.135459112815368
+  validation error rate:         17.20753205128205%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 79 of 100 took 70.38094067573547s
+  LR:                            3.792887875145924e-06
+  training loss:                 1.1682366708429848
+  validation loss:               1.1353878378868103
+  validation error rate:         17.20753205128205%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 80 of 100 took 70.38388514518738s
+  LR:                            3.459154854594687e-06
+  training loss:                 1.1682215435475838
+  validation loss:               1.135473139775105
+  validation error rate:         17.217548076923077%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 81 of 100 took 70.38803815841675s
+  LR:                            3.1547867224009707e-06
+  training loss:                 1.1682372809183308
+  validation loss:               1.1345728620504723
+  validation error rate:         17.37780448717949%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 82 of 100 took 70.37371563911438s
+  LR:                            2.877199686685789e-06
+  training loss:                 1.1682344113181278
+  validation loss:               1.136045257250468
+  validation error rate:         17.257612179487182%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 83 of 100 took 70.3661470413208s
+  LR:                            2.624037301248867e-06
+  training loss:                 1.1682389467954635
+  validation loss:               1.135552126627702
+  validation error rate:         17.177483974358974%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 84 of 100 took 70.418381690979s
+  LR:                            2.3931504616131955e-06
+  training loss:                 1.1682651108357964
+  validation loss:               1.1351900513355548
+  validation error rate:         17.237580128205128%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 85 of 100 took 70.3844587802887s
+  LR:                            2.1825791612008334e-06
+  training loss:                 1.1681978650209381
+  validation loss:               1.135162422290215
+  validation error rate:         17.578125%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 86 of 100 took 70.38341498374939s
+  LR:                            1.9905358527674896e-06
+  training loss:                 1.168186499360131
+  validation loss:               1.1346018130962665
+  validation error rate:         17.34775641025641%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 87 of 100 took 70.41690921783447s
+  LR:                            1.8153902738505098e-06
+  training loss:                 1.1682383593989583
+  validation loss:               1.1350888594602928
+  validation error rate:         17.327724358974358%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 88 of 100 took 70.38372802734375s
+  LR:                            1.6556556074129583e-06
+  training loss:                 1.1682128851733558
+  validation loss:               1.1359533209067125
+  validation error rate:         17.217548076923077%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 89 of 100 took 70.41091656684875s
+  LR:                            1.5099758602010107e-06
+  training loss:                 1.1682384472067764
+  validation loss:               1.1350880616750472
+  validation error rate:         17.177483974358974%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 90 of 100 took 70.362051486969s
+  LR:                            1.3771143516690857e-06
+  training loss:                 1.1682197393440619
+  validation loss:               1.135495745218717
+  validation error rate:         17.307692307692307%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 91 of 100 took 70.39163064956665s
+  LR:                            1.2559432157547924e-06
+  training loss:                 1.1681965669480765
+  validation loss:               1.1346679268739162
+  validation error rate:         17.37780448717949%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 92 of 100 took 70.36944150924683s
+  LR:                            1.1454338263838886e-06
+  training loss:                 1.1682511721442386
+  validation loss:               1.1352544656166663
+  validation error rate:         17.41786858974359%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 93 of 100 took 70.37992429733276s
+  LR:                            1.0446480654270216e-06
+  training loss:                 1.1682403333303406
+  validation loss:               1.135354220867157
+  validation error rate:         17.257612179487182%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 94 of 100 took 70.36232614517212s
+  LR:                            9.527303589816253e-07
+  training loss:                 1.1682034960607204
+  validation loss:               1.1351733742616115
+  validation error rate:         17.197516025641026%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 95 of 100 took 70.3543131351471s
+  LR:                            8.689004143746893e-07
+  training loss:                 1.1682630365214697
+  validation loss:               1.1351435474860363
+  validation error rate:         17.177483974358974%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 96 of 100 took 70.36724543571472s
+  LR:                            7.924465962305582e-07
+  training loss:                 1.1682397805336044
+  validation loss:               1.1349777044394078
+  validation error rate:         17.267628205128204%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 97 of 100 took 70.37491583824158s
+  LR:                            7.227198853729651e-07
+  training loss:                 1.1682114927507028
+  validation loss:               1.135335772465437
+  validation error rate:         17.137419871794872%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 98 of 100 took 70.37507820129395s
+  LR:                            6.591283692782049e-07
+  training loss:                 1.1682261101356366
+  validation loss:               1.1358321737020443
+  validation error rate:         17.39783653846154%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 99 of 100 took 70.4174633026123s
+  LR:                            6.011322173087076e-07
+  training loss:                 1.1682145167414735
+  validation loss:               1.1355049228056884
+  validation error rate:         17.277644230769234%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
+Epoch 100 of 100 took 70.42752313613892s
+  LR:                            5.482390980715936e-07
+  training loss:                 1.1682157307863235
+  validation loss:               1.1357797949742048
+  validation error rate:         17.267628205128204%
+  best epoch:                    13
+  best validation error rate:    10.196314102564102%
+  test loss:                     1.1408764872795496
+  test error rate:               11.538461538461538%
