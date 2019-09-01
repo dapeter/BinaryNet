@@ -71,9 +71,9 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("W_LR_scale = "+str(W_LR_scale))
 
     # Decaying LR 
-    LR_start = 0.001
+    LR_start = 0.005
     print("LR_start = "+str(LR_start))
-    LR_fin = 0.001  # 0.0000003
+    LR_fin = 0.0000005  # 0.0000003
     print("LR_fin = "+str(LR_fin))
     LR_decay = (LR_fin/LR_start)**(1./num_epochs)
     print("LR_decay = "+str(LR_decay))
@@ -158,49 +158,49 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     cnn = lasagne.layers.DropoutLayer(
         cnn,
         p=dropout_in)
-    
+
     # 32C3-64C3-P2
     cnn = binary_net.Conv2DLayer(
-            cnn, 
-            binary=binary,
-            stochastic=stochastic,
-            H=H,
-            W_LR_scale=W_LR_scale,
-            num_filters=32,
-            filter_size=(3, 3),
-            pad=1,
-            nonlinearity=lasagne.nonlinearities.identity)
-    
+        cnn,
+        binary=binary,
+        stochastic=stochastic,
+        H=H,
+        W_LR_scale=W_LR_scale,
+        num_filters=32,
+        filter_size=(3, 3),
+        pad=1,
+        nonlinearity=lasagne.nonlinearities.identity)
+
     cnn = lasagne.layers.BatchNormLayer(
-            cnn,
-            epsilon=epsilon, 
-            alpha=alpha)
-                
+        cnn,
+        epsilon=epsilon,
+        alpha=alpha)
+
     cnn = lasagne.layers.NonlinearityLayer(
-            cnn,
-            nonlinearity=activation) 
+        cnn,
+        nonlinearity=activation)
 
     cnn = binary_net.Conv2DLayer(
-            cnn,
-            binary=binary,
-            stochastic=stochastic,
-            H=H,
-            W_LR_scale=W_LR_scale,
-            num_filters=64,
-            filter_size=(3, 3),
-            pad=1,
-            nonlinearity=lasagne.nonlinearities.identity)
+        cnn,
+        binary=binary,
+        stochastic=stochastic,
+        H=H,
+        W_LR_scale=W_LR_scale,
+        num_filters=64,
+        filter_size=(3, 3),
+        pad=1,
+        nonlinearity=lasagne.nonlinearities.identity)
 
     cnn = lasagne.layers.MaxPool2DLayer(cnn, pool_size=(2, 2))
-    
+
     cnn = lasagne.layers.BatchNormLayer(
-            cnn,
-            epsilon=epsilon, 
-            alpha=alpha)
-                
+        cnn,
+        epsilon=epsilon,
+        alpha=alpha)
+
     cnn = lasagne.layers.NonlinearityLayer(
-            cnn,
-            nonlinearity=activation) 
+        cnn,
+        nonlinearity=activation)
 
     cnn = lasagne.layers.DropoutLayer(
         cnn,
@@ -208,44 +208,44 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
 
     # 128FP-10FP
     cnn = binary_net.DenseLayer(
-                cnn, 
-                binary=binary,
-                stochastic=stochastic,
-                H=H,
-                W_LR_scale=W_LR_scale,
-                nonlinearity=lasagne.nonlinearities.identity,
-                num_units=128)
-                  
+        cnn,
+        binary=binary,
+        stochastic=stochastic,
+        H=H,
+        W_LR_scale=W_LR_scale,
+        nonlinearity=lasagne.nonlinearities.identity,
+        num_units=128)
+
     cnn = lasagne.layers.BatchNormLayer(
-            cnn,
-            epsilon=epsilon, 
-            alpha=alpha)
-                
+        cnn,
+        epsilon=epsilon,
+        alpha=alpha)
+
     cnn = lasagne.layers.NonlinearityLayer(
-            cnn,
-            nonlinearity=activation)
+        cnn,
+        nonlinearity=activation)
 
     cnn = lasagne.layers.DropoutLayer(
         cnn,
         p=dropout_hidden)
 
     cnn = binary_net.DenseLayer(
-                cnn,
-                binary=binary,
-                stochastic=stochastic,
-                H=H,
-                W_LR_scale=W_LR_scale,
-                nonlinearity=lasagne.nonlinearities.identity,
-                num_units=10)
+        cnn,
+        binary=binary,
+        stochastic=stochastic,
+        H=H,
+        W_LR_scale=W_LR_scale,
+        nonlinearity=lasagne.nonlinearities.identity,
+        num_units=10)
 
     cnn = lasagne.layers.BatchNormLayer(
-            cnn,
-            epsilon=epsilon,
-            alpha=alpha)
+        cnn,
+        epsilon=epsilon,
+        alpha=alpha)
 
     cnn = lasagne.layers.NonlinearityLayer(
-            cnn,
-            nonlinearity=lasagne.nonlinearities.softmax)
+        cnn,
+        nonlinearity=lasagne.nonlinearities.softmax)
 
     train_output = lasagne.layers.get_output(cnn, deterministic=False)
     
@@ -281,7 +281,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
 
     print('Training...')
     
-    train_losses, val_losses, val_errors, test_err = binary_net.train(
+    binary_net.train(
             train_fn,val_fn,
             cnn,
             batch_size,
