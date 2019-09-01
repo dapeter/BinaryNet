@@ -1,0 +1,3 @@
+dataset=cifar
+network=cnn
+layer=2
