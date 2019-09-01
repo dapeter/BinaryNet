@@ -41,7 +41,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("epsilon = "+str(epsilon))
 
     # Training parameters
-    num_epochs = 100
+    num_epochs = 150
     print("num_epochs = "+str(num_epochs))
 
     # Dropout parameters
