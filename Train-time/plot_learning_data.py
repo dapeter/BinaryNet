@@ -4,15 +4,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    data_folders = glob('./results/*/')
+    data_path = "./results/???/"  # Change here
+    save_folder = "./plots/learning/???/"  # Change here
+
+    meta = {}
+    with open(data_path + "/meta.txt", "r") as param_file:
+        for line in param_file:
+            key, val = line.partition("=")[::2]
+            meta[key.strip()] = val.strip()
 
     data = []
-
-    for folder in data_folders:
+    for folder in glob(data_path + "/*/"):
         if os.path.isfile(folder + "performance.dat"):
             data = np.loadtxt(folder + "performance.dat")
         else:
-            continue
+            print("Missing performance data in " + folder)
+            exit(-1)
 
         # Epoch, LR, Training Loss, Validation Loss, Validation Error,
         # Best Epoch, Best Validation Error, Test Loss, Test Error
@@ -39,5 +46,19 @@ if __name__ == "__main__":
         ax_list[1].axvline(x=best_epoch, color='gray', linestyle='--', label='best epoch', lw=2)
         ax_list[1].legend(loc="upper right")
 
-        plt.savefig(folder + "performance.png")
+        params = {}
+        with open(folder + "params.txt", "r") as param_file:
+            for line in param_file:
+                key, val = line.partition("=")[::2]
+                params[key.strip()] = val.strip()
+
+        fname = meta["dataset"] + "_" + meta["network"] + meta["layer"] + "_a" + params["nalpha"]
+        if params["binary"] == "True":
+            plt.savefig(save_folder + fname + "_b.png")
+        elif params["binary"] == "False":
+            plt.savefig(save_folder + fname + ".png")
+        else:
+            print("Param file corrupted in " + folder)
+            exit(-1)
+
         plt.close(fig)
