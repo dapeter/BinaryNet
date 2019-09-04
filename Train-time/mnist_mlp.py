@@ -97,7 +97,7 @@ def run(binary=False, noise=None, nalpha=0, result_path=None):
     print("noise = " + str(noise))
     print("nalpha = " + str(nalpha))
 
-    train_set_size = 10000  # default: 50000
+    train_set_size = 50000  # default: 50000
     train_X, train_y = mnist.get_train_data(n_samples=train_set_size, noise=noise, alpha=nalpha)
     validation_X, validation_y = mnist.get_validation_data()
     test_X, test_y = mnist.get_test_data()
