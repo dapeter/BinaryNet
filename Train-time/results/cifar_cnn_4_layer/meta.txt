@@ -1,0 +1,3 @@
+dataset=cifar
+network=Conv
+layer=4
