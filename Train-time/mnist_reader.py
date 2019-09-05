@@ -35,9 +35,9 @@ class MnistReader(object):
             clean_X = self._training_data[0][0:n_samples]
             clean_y = self._training_data[1][0:n_samples]
 
-            rand_idx = np.random.randint(n_samples, high=self._training_data[0].shape[0], size=alpha*n_samples)
+            rand_idx = np.random.randint(self._training_data[0].shape[0], size=alpha*n_samples)
             noisy_X = self._training_data[0][rand_idx]
-            noisy_y = np.random.randint(0, high=10, size=alpha*n_samples)
+            noisy_y = np.random.randint(10, size=alpha*n_samples)
 
             train_X = np.concatenate((clean_X, noisy_X))
             train_y = np.concatenate((clean_y, noisy_y))
