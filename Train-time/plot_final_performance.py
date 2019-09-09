@@ -86,7 +86,7 @@ plt.close(2)
 
 
 # Cifar10
-data_dirs = ["cifar_cnn_2_layer"]
+data_dirs = ["cifar_cnn_2_layer", "cifar_cnn_4_layer"]
 colors = ["r", "g", "b", "m", "o", "c"]
 
 c = 0
