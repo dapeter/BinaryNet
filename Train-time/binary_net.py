@@ -351,3 +351,20 @@ def train(train_fn,val_fn,
         if (epoch + 1) - best_epoch > 50:
             print("Early stopping after " + str(epoch + 1) + " epochs.")
             break
+
+    # After training has finished, get the predicted outputs of the network to assemble the confusion matrix
+    test_output = lasagne.layers.get_output(model, inputs=X_test, deterministic=True)
+    y_hat_test = test_output.eval()
+
+    # Remove one hot encoding
+    y_test = np.argmax(y_test, axis=1)
+    y_hat_test = np.argmax(y_hat_test, axis=1)
+
+    # Assemble confusion matrix
+    confusion_matrix = np.zeros((10, 10), dtype='int32')
+    for actual, predicted in zip(y_test, y_hat_test):
+        confusion_matrix[actual, predicted] = confusion_matrix[actual, predicted] + 1
+
+    np.savetxt(result_path + "confusion.dat", confusion_matrix)
+
+    return
