@@ -353,8 +353,13 @@ def train(train_fn,val_fn,
             break
 
     # After training has finished, get the predicted outputs of the network to assemble the confusion matrix
-    test_output = lasagne.layers.get_output(model, inputs=X_test, deterministic=True)
-    y_hat_test = test_output.eval()
+    test_batch_output = lasagne.layers.get_output(model, inputs=X_test[0:1000], deterministic=True)
+    y_hat_test = test_batch_output.eval()
+
+    batches = (len(X_test) // 1000) - 1
+    for i in range(batches):
+        test_batch_output = lasagne.layers.get_output(model, inputs=X_test[(i + 1) * 1000:(i + 2) * 1000], deterministic=True)
+        y_hat_test = np.concatenate((y_hat_test, test_batch_output.eval()), axis=0)
 
     # Remove one hot encoding
     y_test = np.argmax(y_test, axis=1)
@@ -366,5 +371,6 @@ def train(train_fn,val_fn,
         confusion_matrix[actual, predicted] = confusion_matrix[actual, predicted] + 1
 
     np.savetxt(result_path + "confusion.dat", confusion_matrix)
+    print(confusion_matrix)
 
     return
