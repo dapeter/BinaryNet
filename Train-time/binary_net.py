@@ -312,6 +312,8 @@ def train(train_fn,val_fn,
             
             if save_path is not None:
                 np.savez(save_path, *lasagne.layers.get_all_param_values(model))
+
+            best_model_params = lasagne.layers.get_all_param_values(model)
         
         epoch_duration = time.time() - start_time
         
@@ -348,11 +350,13 @@ def train(train_fn,val_fn,
         LR *= LR_decay
 
         # Early stopping
-        if (epoch + 1) - best_epoch > 50:
+        if (epoch + 1) - best_epoch > 20:
             print("Early stopping after " + str(epoch + 1) + " epochs.")
             break
 
     # After training has finished, get the predicted outputs of the network to assemble the confusion matrix
+    lasagne.layers.set_all_param_values(model, best_model_params)
+
     test_batch_output = lasagne.layers.get_output(model, inputs=X_test[0:1000], deterministic=True)
     y_hat_test = test_batch_output.eval()
 
